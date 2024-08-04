@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from './ProductCard';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -8,16 +9,17 @@ const ProductList = () => {
   useEffect(() => {
     fetch('https://dummyjson.com/products')
       .then(response => response.json())
-      .then(data => setProducts(data.products));
+      .then(data => setProducts(data.products))
+      .catch(error => console.error('Error fetching products:', error));
   }, []);
 
   return (
     <Container>
       <Row>
         {products.map(product => (
-          <Col key={product.id} sm={12} md={6} lg={4}>
+          <div key={product.id} className="col-md-4">
             <ProductCard product={product} />
-          </Col>
+          </div>
         ))}
       </Row>
     </Container>

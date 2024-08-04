@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   return (
@@ -7,13 +8,10 @@ const ProductCard = ({ product }) => {
       <Card.Img variant="top" src={product.thumbnail} />
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
-        <Card.Text>
-          {product.description}
-        </Card.Text>
-        <Card.Text>
-          <strong>${product.price}</strong>
-        </Card.Text>
-        <Button variant="primary">Add to Cart</Button>
+        <Card.Text>${product.price}</Card.Text>
+        <Button variant="primary" as={Link} to={`/product/${product.id}`}>
+          View Details
+        </Button>
       </Card.Body>
     </Card>
   );
