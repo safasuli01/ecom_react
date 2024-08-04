@@ -1,9 +1,11 @@
 import React from 'react';
+import './Login.css';
+
 
 const Login = () => {
   return (
-    <div>
-      <h2>Login Page</h2>
+    <div className="login-container">
+      <h2 className="login-title">Login Page</h2>
     </div>
   );
 };

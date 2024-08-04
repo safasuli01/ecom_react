@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Container, Form, Nav, Navbar, Button } from 'react-bootstrap';
+import { Container, Form, Navbar, Button, Nav } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const NavbarScroller = () => {
   return (
@@ -9,12 +11,20 @@ const NavbarScroller = () => {
         <Navbar.Brand as={NavLink} to="/">Products</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-            <Nav.Link as={NavLink} to="/register" activeClassName="active-link">Register</Nav.Link>
-            <Nav.Link as={NavLink} to="/login" activeClassName="active-link">Login</Nav.Link>
-            <Nav.Link as={NavLink} to="/cart" activeClassName="active-link">Cart</Nav.Link>
+          <Nav variant="tabs" defaultActiveKey="/">
+            <Nav.Item>
+              <Nav.Link as={NavLink} to="/register" activeClassName="active-link">Register</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={NavLink} to="/login" activeClassName="active-link">Login</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={NavLink} to="/cart" activeClassName="active-link">
+                <FontAwesomeIcon icon={faShoppingCart} /> Cart
+              </Nav.Link>
+            </Nav.Item>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex ms-auto">
             <Form.Control
               type="search"
               placeholder="Search"

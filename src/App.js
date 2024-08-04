@@ -7,7 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
 import NotFound from './pages/NotFound';
-import SingleProduct from './pages/SingleProduct'
+import SingleProduct from './pages/SingleProduct';
+import ProductDetails from './component/Product/ProductDetails';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </div>
     </Router>
@@ -28,5 +30,3 @@ function App() {
 }
 
 export default App;
-
-
