@@ -1,0 +1,65 @@
+.product-container {
+    font-family: 'Arial, sans-serif';
+  }
+  
+  .product-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .product-category, .product-brand {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .rating .fa-star {
+    font-size: 1.2rem;
+  }
+  
+  .product-description {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-price {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .additional-image {
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .main-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+  
+  .btn-outline-dark {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  #quantity {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .loading, .error {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  

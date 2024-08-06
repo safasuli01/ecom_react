@@ -1,32 +1,29 @@
 // src/App.js
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './component/store/slices/store';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Products from './pages/Products';
-import MyNavbar from './component/Navbar/Navbar';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import NavbarScroller from './component/Navbar/Navbar';
 import Cart from './pages/Cart';
 import NotFound from './pages/NotFound';
-import SingleProduct from './pages/SingleProduct';
-import ProductDetails from './component/Product/ProductDetails';
+import Login from './pages/Login';
+import Register from './pages/Register'; // Ensure the correct path
+import ProductDetail from './component/Product/ProductDetails';
 
-function App() {
+export default function App() {
   return (
-    <Router>
-      <div className="App">
-        <MyNavbar />
+    <Provider store={store}>
+      <Router>
+        <NavbarScroller />
         <Routes>
-          <Route path="/" element={<Products />} exact />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Register />} /> 
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/product/:id" element={<SingleProduct />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </Provider>
   );
 }
-
-export default App;
