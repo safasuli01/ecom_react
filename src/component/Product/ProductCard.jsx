@@ -1,7 +1,7 @@
 // src/component/Product/ProductCard.jsx
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../store/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemToCart, removeItemFromCart } from '../store/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -11,11 +11,19 @@ import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const [isAdded, setIsAdded] = useState(false); 
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const [isAdded, setIsAdded] = useState(
+    cartItems ? cartItems.some((item) => item.id === product.id) : false
+  );
 
   const handleAddToCart = () => {
     dispatch(addItemToCart(product));
-    setIsAdded(true); 
+    setIsAdded(true);
+  };
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeItemFromCart(product.id));
+    setIsAdded(false);
   };
 
   const truncateDescription = (description, wordLimit) => {
@@ -27,8 +35,8 @@ const ProductCard = ({ product }) => {
   };
 
   const inStock = product.stock > 0;
-  const stockText = inStock ? "In stock" : "Out of stock";
-  const stockClass = inStock ? "text-success" : "text-danger";
+  const stockText = inStock ? 'In stock' : 'Out of stock';
+  const stockClass = inStock ? 'text-success' : 'text-danger';
 
   const renderRating = (rating) => {
     const fullStars = Math.floor(rating);
@@ -37,9 +45,13 @@ const ProductCard = ({ product }) => {
 
     return (
       <>
-        {[...Array(fullStars)].map((_, i) => <FontAwesomeIcon key={i} icon={faStar} className="text-warning" />)}
+        {[...Array(fullStars)].map((_, i) => (
+          <FontAwesomeIcon key={i} icon={faStar} className="text-warning" />
+        ))}
         {halfStar && <FontAwesomeIcon icon={faStarHalfAlt} className="text-warning" />}
-        {[...Array(emptyStars)].map((_, i) => <FontAwesomeIcon key={i} icon={faStarEmpty} className="text-warning" />)}
+        {[...Array(emptyStars)].map((_, i) => (
+          <FontAwesomeIcon key={i} icon={faStarEmpty} className="text-warning" />
+        ))}
       </>
     );
   };
@@ -57,13 +69,12 @@ const ProductCard = ({ product }) => {
         </Card.Text>
         <Card.Text>Price: ${product.price}</Card.Text>
         <Card.Text>Rating: {renderRating(product.rating)}</Card.Text>
-        <Button 
-          variant="outline-primary" 
-          className="btn-custom" 
-          onClick={handleAddToCart}
-          disabled={isAdded}
+        <Button
+          variant={isAdded ? "outline-success" : "outline-primary"}
+          className="btn-custom"
+          onClick={isAdded ? handleRemoveFromCart : handleAddToCart}
         >
-          {isAdded ? 'Added to Cart' : 'Add to Cart'} 
+          {isAdded ? 'Remove from Cart' : 'Add to Cart'}
         </Button>
       </Card.Body>
     </Card>

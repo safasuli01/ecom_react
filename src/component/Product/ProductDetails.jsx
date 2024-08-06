@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { addItemToCart } from '../../component/store/slices/cartSlice'; // Adjust the path as necessary
+import { addItemToCart } from '../../component/store/slices/cartSlice'; 
 import './ProductDetails.css';
 
 const SingleProduct = () => {
