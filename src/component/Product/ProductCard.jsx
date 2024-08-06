@@ -1,4 +1,3 @@
-// src/component/Product/ProductCard.jsx
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart, removeItemFromCart } from '../store/slices/cartSlice';
